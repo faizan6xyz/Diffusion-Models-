@@ -55,8 +55,7 @@ Reverse process (sampling):   xₜ ──denoise──▶ ... ──▶ x₁ ─
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/diffusion-model.git
-cd diffusion-model
+git clone https://github.com/faizan6xyz/Diffusion-Models-
 ```
 
 ### 2. Install dependencies
