@@ -142,20 +142,3 @@ The DDPM reverse process is stochastic — a small amount of fresh noise is adde
 
 ---
 
-## 📄 Reference
-
-```bibtex
-@article{ho2020ddpm,
-  title   = {Denoising Diffusion Probabilistic Models},
-  author  = {Jonathan Ho and Ajay Jain and Pieter Abbeel},
-  journal = {NeurIPS},
-  year    = {2020},
-  url     = {https://arxiv.org/abs/2006.11239}
-}
-```
-
----
-
-## 📝 License
-
-MIT — free to use, modify, and distribute. See [LICENSE](LICENSE) for details.
