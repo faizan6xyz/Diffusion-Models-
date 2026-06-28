@@ -13,18 +13,15 @@ BATCH      = 128
 LR         = 2e-4
 DEVICE     = "cuda" if torch.cuda.is_available() else "cpu"
 
-# ── Noise schedule ───────────────────────────────────────────────────────────
 betas      = torch.linspace(BETA_START, BETA_END, T).to(DEVICE)
 alphas     = 1.0 - betas
 alpha_bar  = torch.cumprod(alphas, dim=0)           # ᾱ_t
 
 def q_sample(x0, t):
-    """Forward process: add noise to x0 at timestep t."""
     ab = alpha_bar[t][:, None, None, None]           # (B,1,1,1)
     noise = torch.randn_like(x0)
     return ab.sqrt() * x0 + (1 - ab).sqrt() * noise, noise
 
-# ── Sinusoidal time embedding ────────────────────────────────────────────────
 class SinusoidalEmb(nn.Module):
     def __init__(self, dim):
         super().__init__()
