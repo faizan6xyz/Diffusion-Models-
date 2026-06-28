@@ -22,11 +22,7 @@ alphas    = 1.0 - betas
 alpha_bar = torch.cumprod(alphas, dim=0)
 
 def q_sample(x0, t):
-    """
-    Forward (noising) process: corrupt a clean image x0 to timestep t in one shot.
-    Thanks to the reparameterisation trick we skip the intermediate steps.
-    Returns the noisy image AND the noise that was added (needed for the loss).
-    """
+    
     ab    = alpha_bar[t][:, None, None, None]   # reshape to (B,1,1,1) for broadcasting
     noise = torch.randn_like(x0)                # sample ε ~ N(0, I)
     # Closed-form: x_t = √ᾱ·x0 + √(1-ᾱ)·ε
