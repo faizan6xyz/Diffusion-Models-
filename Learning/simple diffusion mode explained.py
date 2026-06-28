@@ -4,7 +4,6 @@ import torch.nn.functional as F
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 
-# ── Config ───────────────────────────────────────────────────────────────────
 T          = 300    # Total diffusion timesteps — how many steps to corrupt/recover an image
 BETA_START = 1e-4   # Starting noise variance (very small — barely any noise at step 0)
 BETA_END   = 0.02   # Ending noise variance (larger — almost pure noise at step T)
@@ -13,13 +12,10 @@ BATCH      = 128    # Number of images processed per gradient update
 LR         = 2e-4   # Adam learning rate
 DEVICE     = "cuda" if torch.cuda.is_available() else "cpu"
 
-# ── Noise schedule ────────────────────────────────────────────────────────────
 # β_t: how much new noise is added at each timestep t (linearly increasing)
 betas     = torch.linspace(BETA_START, BETA_END, T).to(DEVICE)
-
 # α_t = 1 - β_t: how much of the signal is preserved at each step
 alphas    = 1.0 - betas
-
 # ᾱ_t = cumulative product of all α up to t
 # This lets us jump directly to any noise level without stepping through each t:
 #   noisy_image = sqrt(ᾱ_t) * x0  +  sqrt(1 - ᾱ_t) * noise
